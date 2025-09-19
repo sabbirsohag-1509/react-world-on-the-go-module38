@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-const Country = ({country}) => {
+const Country = ({country, handleVisitedCountry, handleVisitedFlags}) => {
     // console.log(country?.languages?.languages?.due)
+    console.log(handleVisitedCountry)
     const [visited, setVisited] = useState(false);
 
     const handleVisited = () =>{
         setVisited(!visited)
+        handleVisitedCountry(country)
     }
     return (
         <div className= {`border border-cyan-300 p-5 rounded-xl ${visited && 'country-visited'}`} >
@@ -20,6 +22,8 @@ const Country = ({country}) => {
             <p className='text-xl font-semibold mt-1'>Region: {country.region.region}</p>
             <button className='mt-3' onClick={handleVisited} > 
                 {visited ? 'Visited' : 'Not Visited'} </button>
+
+            <button onClick={() => {handleVisitedFlags(country.flags.flags.png)}}>Add Visited Flag</button>
         </div>
     );
 };
